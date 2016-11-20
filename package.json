@@ -4,6 +4,7 @@
   "description"  : "Simple express angular and mongo application.",
   "main"         : "main.js",
   "author"       : "aviad@codefresh.io",
+  "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "tsc": "tsc",
@@ -19,8 +20,8 @@
     "express"    : "~4.7.2",
     "mongoose"   : "~3.6.2",
     "morgan"	 : "~1.2.2",
-	"body-parser": "~1.5.2",
-	"method-override": "~2.1.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2",
 
     "@angular/common": "~2.1.1",
     "@angular/compiler": "~2.1.1",
