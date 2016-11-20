@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Contact} from "./contact";
 import {Headers, RequestOptions, Response, Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import './rxjs-operators';
 
 @Injectable()
 export class ContactService{
