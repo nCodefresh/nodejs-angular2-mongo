@@ -5,17 +5,22 @@ import {Observable} from "rxjs/Observable";
 import './rxjs-operators';
 
 @Injectable()
-export class ContactService{
+export class ContactService {
 
     constructor (private http: Http) {}
 
-    addContact(name: string, email: string, message: string): Observable<Contact>{
+    addContact(name: string, email: string, message: string): Promise<Contact> {
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
-
-        return this.http.post('http://localhost:9000/api/contact', {name, email, message}, options)
-            .map(this.extractData)
+        var obj = {
+            name: name,
+            email: email,
+            message: message
+        };
+        return this.http.post('http://localhost:9000/api/contact', JSON.stringify(obj), options)
+            .toPromise()
+            .then(this.extractData)
             .catch(this.handleError);
     }
 

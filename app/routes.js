@@ -21,7 +21,6 @@ module.exports = function(app) {
 
 	// get contact form data and dave it
 	app.post('/api/contact', function(req, res) {
-
 		// insert new contact
 		Contact.create({
 			name : req.body.name,
@@ -40,7 +39,6 @@ module.exports = function(app) {
 				res.send({status:congrats + " Your form has been sent!"});
 			});
 		});
-
 	});
 
 	// contact update

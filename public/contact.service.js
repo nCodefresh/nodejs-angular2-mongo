@@ -19,8 +19,14 @@ var ContactService = (function () {
     ContactService.prototype.addContact = function (name, email, message) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:9000/api/contact', { name: name, email: email, message: message }, options)
-            .map(this.extractData)
+        var obj = {
+            name: name,
+            email: email,
+            message: message
+        };
+        return this.http.post('http://localhost:9000/api/contact', JSON.stringify(obj), options)
+            .toPromise()
+            .then(this.extractData)
             .catch(this.handleError);
     };
     ContactService.prototype.extractData = function (res) {
