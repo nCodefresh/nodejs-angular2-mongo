@@ -27,6 +27,8 @@ steps:
           image: mongo
         server:
           image: ${{build_server}}
+          environment:
+            - MONGO_URL=mongodb://mongodb/exampleDb
           links:
             - db
           ports:

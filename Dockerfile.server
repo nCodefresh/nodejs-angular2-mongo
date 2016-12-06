@@ -10,6 +10,9 @@ RUN npm install
 
 ADD . /usr/src/app
 
+ADD start-server.sh /usr/src/app/start-server.sh
+RUN chmod +x /usr/src/app/start-server.sh
+
 EXPOSE 9000
 
-CMD node app.js
+CMD "/usr/src/app/start-server.sh"
