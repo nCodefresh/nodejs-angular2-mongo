@@ -34,5 +34,4 @@ steps:
         client:
           image: ${{build_client}}
           ports:
-            - 80
-            - 443
+            - 80:443
