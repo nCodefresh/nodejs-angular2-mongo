@@ -1,19 +1,38 @@
 version: '1.0'
 
 steps:
-  clone-prj:
-    type: git-clone
-    repo: https://github.com/Codefresh-Examples/express-angular-mongo.git
-
-  build-prj:
+  build_client:
     type: build
-    description: codefresh example
-    image-name: codefreshexamples/express-angular-mongo
-    dockerfile: Dockerfile
-    working-directory: ${{clone-prj}}
-    tag: latest
+    description: codefresh example client
+    image-name: codefreshio/web-client
+    dockerfile: Dockerfile.client
+    working-directory: ${{main_clone}}
+    tag: ${{CF_BRANCH}}
 
-  push-dockerhub:
-    type: push
-    candidate: ${{build-prj}}
-    tag: latest
+  build_server:
+    type: build
+    description: codefresh example server
+    image-name: codefreshio/web-server
+    dockerfile: Dockerfile.server
+    working-directory: ${{main_clone}}
+    tag: ${{CF_BRANCH}}
+
+  launch_composition:
+    type: launch-composition
+    environmentName: 'env-composition-example'
+    composition:
+      version: '2'
+      services:
+        db:
+          image: mongo
+        server:
+          image: ${{build_server}}
+          links:
+            - db
+          ports:
+           - 9000
+        client:
+          image: ${{build_client}}
+          ports:
+            - 80
+            - 443

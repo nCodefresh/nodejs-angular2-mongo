@@ -1,4 +1,4 @@
-FROM davidsblog/node-mongo:latest
+FROM node:latest
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,4 +10,7 @@ ADD . /usr/src/app
 
 ADD start.sh /usr/src/app/start.sh
 RUN chmod +x /usr/src/app/start.sh
+
+EXPOSE 3000
+
 CMD "/usr/src/app/start.sh"
