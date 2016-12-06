@@ -4,7 +4,7 @@ steps:
   build_client:
     type: build
     description: codefresh example client
-    image-name: codefreshio/web-client
+    image_name: codefreshio/web-client
     dockerfile: Dockerfile.client
     working-directory: ${{main_clone}}
     tag: ${{CF_BRANCH}}
@@ -12,7 +12,7 @@ steps:
   build_server:
     type: build
     description: codefresh example server
-    image-name: codefreshio/web-server
+    image_name: codefreshio/web-server
     dockerfile: Dockerfile.server
     working-directory: ${{main_clone}}
     tag: ${{CF_BRANCH}}
@@ -23,14 +23,16 @@ steps:
     composition:
       version: '2'
       services:
-        db:
+        mongodb:
           image: mongo
+          ports:
+            - 27017
         server:
           image: ${{build_server}}
           environment:
             - MONGO_URL=mongodb://mongodb/exampleDb
           links:
-            - db
+            - mongodb
           ports:
            - 9000
         client:
