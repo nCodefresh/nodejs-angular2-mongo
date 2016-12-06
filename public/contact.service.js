@@ -19,7 +19,7 @@ var ContactService = (function () {
     ContactService.prototype.addContact = function (name, email, message) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post('/api/contact', { name: name, email: email, message: message }, options)
+        return this.http.post('http://localhost:9000/api/contact', { name: name, email: email, message: message }, options)
             .map(this.extractData)
             .catch(this.handleError);
     };

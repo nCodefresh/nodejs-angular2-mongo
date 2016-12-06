@@ -24,9 +24,9 @@ module.exports = function(app) {
 
 		// insert new contact
 		Contact.create({
-			name : req.body.form_data.name,
-			email: req.body.form_data.email,
-			message: req.body.form_data.message,
+			name : req.body.name,
+			email: req.body.email,
+			message: req.body.message,
 			done : false
 		}, function(err, contact) {
 			if (err)
@@ -36,7 +36,7 @@ module.exports = function(app) {
 				if (err)
 					res.send(err);
 
-				var congrats = "Congrats "+req.body.form_data.name+"! ";
+				var congrats = "Congrats "+req.body.name+"! ";
 				res.send({status:congrats + " Your form has been sent!"});
 			});
 		});
