@@ -30,7 +30,7 @@ steps:
         server:
           image: ${{build_server}}
           environment:
-            - MONGO_URL=mongodb://mongodb/exampleDb
+            - MONGO_URI=mongodb://mongodb/exampleDb
           links:
             - mongodb
           ports:
